@@ -1,8 +1,14 @@
 #include <SFML/Graphics.hpp>
 
+#include "graphics/graphics.hpp"
+#include "domain/map/map.hpp"
+
 int main()
 {
-    auto window = sf::RenderWindow{ { 1920u, 1080u }, "CMake SFML Project" };
+    genetic::Graphics graphics;
+    genetic::Map map(100, 100);
+
+    auto window = sf::RenderWindow{{1920u, 1080u}, "CMake SFML Project"};
     window.setFramerateLimit(144);
 
     while (window.isOpen())
@@ -14,8 +20,8 @@ int main()
                 window.close();
             }
         }
-
         window.clear();
+        graphics.update(map.getMap(), window);
         window.display();
     }
 }
